@@ -1,0 +1,6 @@
+exportPattern("^[[:alpha:]]+")
+import(ggplot2)
+import(coin)
+importFrom("grDevices", "pdf")
+importFrom("graphics", "hist")
+importFrom("stats", "rbinom", "rlnorm", "rnorm", "rpois", "runif")

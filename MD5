@@ -1,0 +1,16 @@
+d62c2efe73be12bdec1e1e840334fba4 *DESCRIPTION
+72b0bd57910ab22bd93e44c46fa4d386 *NAMESPACE
+1848904480c65a1f802e110e51614f60 *R/Percentile_Analysis_Functions.R
+7c4a86560af90bbb121e9bc6aefb5061 *build/partial.rdb
+586316b4e2c917a3965f311e1135c8cd *man/R2.Rd
+3f6582d529adfa24498bedb9908dc602 *man/R2k.Rd
+b471e88adf7bb1a45b0076edb5dce567 *man/R2p.Rd
+309d09543acbfddf9d2aa94fcfe02759 *man/R2pTable.Rd
+3276e45c9146cd801a1d7941ba2aef40 *man/cap1.Rd
+deebbfe8b709221c3f2945d7c1bd2886 *man/pAnalysis-package.Rd
+beed1d4fb7d76ff002102db9a83b98a6 *man/pcdfs.Rd
+1689b8ea182b9f361e3dee346e577c2d *man/plotR2Equiv.Rd
+ff0b40ed575f9142be7b1a3bed1d0e42 *man/plotR2k.Rd
+bb68072cb023c29b4dd8f8759d2e6ac7 *man/plotR2p.Rd
+3ad40945791f01150fe55d14543c8568 *man/plotcdf.Rd
+aae26bd1b474bc96f9fdb76a37d9b4b8 *man/plotpdf.Rd
