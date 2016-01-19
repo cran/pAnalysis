@@ -47,11 +47,11 @@ dN = dof*N
 rnums <- rep(0,dN)
 R2c <- rep(0,N)
 
-if(dist=="normal"){					rnums <- rnorm(n=dN, mean=par1, sd=par2)
-	} else if(dist=="uniform"){		rnums <- runif(n=dN, min=par1, max=par2)
-	} else if(dist=="lognormal"){	rnums <- rlnorm(n=dN, meanlog=par1, sdlog=par2)
-	} else if(dist=="poisson"){		rnums <- rpois(n=dN, lambda=par1)
-	} else if(dist=="binomial"){	rnums <- rbinom(n=dN, size=par1, prob=par2)}
+if(				dist=="normal")		{	rnums <- rnorm(	n=dN, mean=par1, sd=par2)
+	} else if(	dist=="uniform")	{	rnums <- runif(	n=dN, min=par1, max=par2)
+	} else if(	dist=="lognormal")	{	rnums <- rlnorm(n=dN, meanlog=par1, sdlog=par2)
+	} else if(	dist=="poisson")	{	rnums <- rpois(	n=dN, lambda=par1)
+	} else if(	dist=="binomial")	{	rnums <- rbinom(n=dN, size=par1, prob=par2)}
 
 #define R2 components x and y (y is just e, residuals, random numbers)				
 x  <- seq(1,dof)
@@ -97,7 +97,7 @@ return(R2df)
 #
 R2p <- function(dof, pct=0.95, ndecimals=3,...){
 	cdf <- pcdfs(dof, ndecimals=ndecimals,...)[,c(1,3)]		#just R2 and cdf columns
-	R2p = cdf$R2[cdf[,2]>=pct][1]		#R2p is the value of cdf just at the point where it's just >= p
+	R2p <- cdf$R2[cdf[,2]>=pct][1]		#R2p is the value of cdf just at the point where it's just >= p
 	R2p <- R2p + rnorm(1)*10^(-(ndecimals+2))  #add a small random number to remove any binning errors.
 	R2p <- round(R2p,ndecimals)
 	return(R2p)
@@ -171,7 +171,7 @@ N = 10^order
 dist2 <- sapply(dist, cap1)
 mxy = max(df$pdf)
 
-plot <- ggplot(df,environment=environment()) + 
+plot <- ggplot(df) + 
 		geom_point(aes(R2, pdf),size=1) +
 		ggtitle(paste("Probability Density Function")) +
 		ylim(0,mxy) +
@@ -199,7 +199,7 @@ cdf <- NULL													#see http://stackoverflow.com/questions/9439256/how-can-
 N = 10^order
 dist2 <- sapply(dist, cap1)
 mxy <- max(r2cdf$cdf)
-plot <- ggplot(r2cdf,environment=environment()) + 
+plot <- ggplot(r2cdf) + 
 		geom_point(aes(R2, cdf),size=1) +
 		ylim(0,mxy) + 
 		xlab(expression(R^2)) + 
@@ -218,7 +218,7 @@ return(plot)
 # Plot R2p for a list of percentiles (not greater than 5 in the list)
 #
 #
-plotR2p <- function(doflist=c(2:30), pctlist=c(0.95), order=4, ndecimals=3,...){
+plotR2p <- function(doflist=c(2:30), pctlist=c(0.95), order=4, ndecimals=3, ...){
 	if(length(pctlist)>5){stop(paste("Too many percentiles to calculate", length(pctlist)))}
 
 	doflist <- doflist[doflist>1] 
@@ -237,22 +237,22 @@ plotR2p <- function(doflist=c(2:30), pctlist=c(0.95), order=4, ndecimals=3,...){
 	r2pdf <- R2pTable(doflist=doflist, pctlist=pctlist, order=order,...)
 	mxy <- 0.9*max(r2pdf[,1])
 	N = 10^order
-	plt <- ggplot(r2pdf,environment = environment())
+	plt <- ggplot(r2pdf)
 
 	if(pctlength>=1){plt <- plt + 
-		geom_point(aes(as.numeric(row.names(r2pdf)), r2pdf[,1]), color=mcolor[1], size=sizes[1], environment=environment())  +
+		geom_point(aes(as.numeric(row.names(r2pdf)), r2pdf[,1]), color=mcolor[1], size=sizes[1]) +
 		geom_text(aes(x=max(doflist), y=mxy-0.00, label=paste0("p = ",pctlist[1])), color=mcolor[1], hjust=1, size=4)}
 	if(pctlength>=2){plt <- plt + 
-		geom_point(aes(as.numeric(row.names(r2pdf)), r2pdf[,2]), color=mcolor[2], size=sizes[2], environment=environment())  +
+		geom_point(aes(as.numeric(row.names(r2pdf)), r2pdf[,2]), color=mcolor[2], size=sizes[2]) +
 		geom_text(aes(x=max(doflist), y=mxy-0.05, label=paste0("p = ",pctlist[2])), color=mcolor[2], hjust=1, size=4)}
 	if(pctlength>=3){plt <- plt + 
-		geom_point(aes(as.numeric(row.names(r2pdf)), r2pdf[,3]), color=mcolor[3], size=sizes[3], environment=environment())  +
+		geom_point(aes(as.numeric(row.names(r2pdf)), r2pdf[,3]), color=mcolor[3], size=sizes[3]) +
 		geom_text(aes(x=max(doflist), y=mxy-0.10, label=paste0("p = ",pctlist[3])), color=mcolor[3], hjust=1, size=4)}
 	if(pctlength>=4){plt <- plt + 
-		geom_point(aes(as.numeric(row.names(r2pdf)), r2pdf[,4]), color=mcolor[4], size=sizes[4], environment=environment())  +
+		geom_point(aes(as.numeric(row.names(r2pdf)), r2pdf[,4]), color=mcolor[4], size=sizes[4]) +
 		geom_text(aes(x=max(doflist), y=mxy-0.15, label=paste0("p = ",pctlist[4])), color=mcolor[4], hjust=1, size=4)} 
 	if(pctlength>=5){plt <- plt + 
-		geom_point(aes(as.numeric(row.names(r2pdf)), r2pdf[,5]), color=mcolor[5], size=sizes[5], environment=environment())  +
+		geom_point(aes(as.numeric(row.names(r2pdf)), r2pdf[,5]), color=mcolor[5], size=sizes[5]) +
 		geom_text(aes(x=max(doflist), y=mxy-0.20, label=paste0("p = ",pctlist[5])), color=mcolor[5], hjust=1, size=4)}
 	
 	plt <- plt + 
@@ -284,7 +284,7 @@ plotR2k <- function(R2, doflist=c(2:30), pct=0.95, order=4, ndecimals=3,...){
 	for(i in 1:n){df$R2k[i] <- R2k(R2, dof=as.numeric(row.names(df)[i]), pct=pct, ndecimals=ndecimals, order=order,...)}
 	
 	maxx=max(doflist)
-	plot <- ggplot(df,environment=environment()) + 
+	plot <- ggplot(df) + 
 		geom_point(aes(as.numeric(row.names(df)),df[,1]),color='red') + 		#column df[,1] is named for the pct used, which can change every time.
 		geom_point(aes(as.numeric(row.names(df)),R2k),color='blue',na.rm=T) + 
 		geom_hline(aes(yintercept=R2),color='black') + 
@@ -344,7 +344,7 @@ plotR2Equiv <- function(R2, dof, pct=0.95, order=4, plot_pctr2=F,...){
 
 	if(length(ptable)==3){ptable <- ptable[c(1,3,2)]}	#ensure proper order of columns;  if pct_r2=T, then swap 2<->3 to keep R2Equiv in pos 2
 
-	plt <- ggplot(ptable,environment=environment()) +
+	plt <- ggplot(ptable) +
 			geom_point(aes(as.numeric(row.names(ptable)),ptable[,1]),color=mcolor[1],size=2,na.rm=T) +
 			geom_point(aes(as.numeric(row.names(ptable)),ptable[,2]),color=mcolor[6],size=2,na.rm=T) +
 			geom_ribbon(aes(x=as.numeric(row.names(ptable)), ymin=ptable[,2], ymax=1),fill=mcolor[4],alpha=0.3,na.rm=T) +

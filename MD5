@@ -1,7 +1,7 @@
-d62c2efe73be12bdec1e1e840334fba4 *DESCRIPTION
+95000c328c80a2ac9bfb40f3bccaa13c *DESCRIPTION
 72b0bd57910ab22bd93e44c46fa4d386 *NAMESPACE
-1848904480c65a1f802e110e51614f60 *R/Percentile_Analysis_Functions.R
-7c4a86560af90bbb121e9bc6aefb5061 *build/partial.rdb
+0e5a3141862e04a4de8630dc06c28687 *R/Percentile_Analysis_Functions_v2.R
+57dac2a4f5b6bcf87a7b98e525f8d458 *build/partial.rdb
 586316b4e2c917a3965f311e1135c8cd *man/R2.Rd
 3f6582d529adfa24498bedb9908dc602 *man/R2k.Rd
 b471e88adf7bb1a45b0076edb5dce567 *man/R2p.Rd
